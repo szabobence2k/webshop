@@ -1,0 +1,50 @@
+<mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
+    <a routerlink="home"> Bence Autósboltja </a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon
+            [matBadge]="1"
+            matBadgeColor="warn"
+            >shopping_cart
+        </mat-icon>
+    </button>
+    
+    <mat-menu #menu="matMenu">
+            <div class="p-3 divide-y divide-solid">
+                <div class="pb-3 flex justify-between">
+                    <span class="mr-16">1 termék(ek)</span>
+                    <a routerLink="kosar">Kosár</a>
+                </div>
+
+                <div class="py-5">
+                    <div class="flex justify-between front-light mb-2">
+                        VALAMI x 1
+                        <span class="font-bold"> {{ '150' | currency:'HUF' }} </span>
+                    </div>
+                    <div class="flex justify-between front-light mb-2">
+                        VALAMI2 x 1
+                        <span class="font-bold"> {{ '150' | currency:'HUF' }} </span>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between py-5 font-light">
+                    Összesen:
+                    <span class="font-bold"> {{ '300' | currency:'HUF' }} </span>
+                </div>
+
+                <div class="pt-3 flex justify-between">
+                    <button
+                      class="bg-rose-600 text-white rounded-full w-10 h-10"
+                    >
+                      <mat-icon>remove_shopping_cart</mat-icon>
+                    </button>
+                    <button
+                      routerLink="kosar"
+                      class="bg-green-600 text-white rounded-full w-10 h-10"
+                    >
+                      <mat-icon>shopping_cart_checkout</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-menu>
+            </mat-toolbar>
+            
