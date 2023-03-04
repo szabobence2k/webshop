@@ -1,0 +1,48 @@
+<mat-card class="mb-4">
+    <div class="flex justify-between">
+        <div>
+            <button mat-button [matMenuTriggerFor]="sortByMenu">
+                Rendezés ár szerint {{ sort }}
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <mat-menu #sortByMenu="matMenu">
+                <button (click)="onSortUpdated('csokkenoen')" mat-menu-item>
+                    Csökkenően
+                </button>
+                <button (click)="onSortUpdated('novekvoen')" mat-menu-item>
+                    Növekvően
+                </button>
+            </mat-menu>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    Show {{ itemsShowCount }}
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="onItemsUpdated(10)" mat-menu-item>
+                        10
+                    </button>
+                    <button (click)="onItemsUpdated(50)" mat-menu-item>
+                        50
+                    </button>
+                    <button (click)="onItemsUpdated(100)" mat-menu-item>
+                        100
+                     </button>
+                    <button (click)="onItemsUpdated(200)" mat-menu-item>
+                        200
+                    </button>
+                </mat-menu>
+            </div>
+
+            <button (click)="onColumnsUpdated(1)">
+                <mat-icon>view_list</mat-icon>
+            </button>
+            <button (click)="onColumnsUpdated(3)">
+                <mat-icon>view_module</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-card>
