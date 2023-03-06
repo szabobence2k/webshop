@@ -26,6 +26,8 @@ import { FiltersComponent } from './pages/pagescomp/filters/filters.component';
 import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesproduct.component';
 import { CartComponent } from './pages/cart/cart.component';
 
+import { CartService } from './services/cart.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,7 @@ import { CartComponent } from './pages/cart/cart.component';
     MatBadgeModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

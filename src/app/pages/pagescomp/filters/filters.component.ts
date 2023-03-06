@@ -9,7 +9,7 @@ export class FiltersComponent implements OnInit {
 
   @Output() showCategory = new EventEmitter<string>();
 
-  categories = ['autok', 'alkatreszek'];
+  categories = ['Autók', 'Motorok', 'Autó alkatreszek', 'Motor alkatrészek'];
 
   constructor() { }
 

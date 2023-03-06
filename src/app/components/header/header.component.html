@@ -1,8 +1,9 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
-    <a routerlink="home"> Bence Autósboltja </a>
+    <a routerLink="home"> Bence Autósboltja </a>
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon
-            [matBadge]="1"
+            [matBadge]="itemsQuantity"
+            [matBadgeHidden]="!itemsQuantity"
             matBadgeColor="warn"
             >shopping_cart
         </mat-icon>
@@ -11,28 +12,24 @@
     <mat-menu #menu="matMenu">
             <div class="p-3 divide-y divide-solid">
                 <div class="pb-3 flex justify-between">
-                    <span class="mr-16">1 termék(ek)</span>
+                    <span class="mr-16">{{ itemsQuantity }} termék(ek)</span>
                     <a routerLink="cart">Kosár</a>
                 </div>
 
-                <div class="py-5">
-                    <div class="flex justify-between front-light mb-2">
-                        VALAMI x 1
-                        <span class="font-bold"> {{ '150' | currency:'HUF' }} </span>
-                    </div>
-                    <div class="flex justify-between front-light mb-2">
-                        VALAMI2 x 1
-                        <span class="font-bold"> {{ '150' | currency:'HUF' }} </span>
+                <div *ngIf="cart.items.length" class="py-5">
+                    <div *ngFor="let item of cart.items" class="flex justify-between front-light mb-2">
+                        {{ item.name }} x {{ item.quantity }}
+                        <span class="font-bold"> {{ item.price | currency:'HUF' }} </span>
                     </div>
                 </div>
                 
                 <div class="flex justify-between py-5 font-light">
                     Összesen:
-                    <span class="font-bold"> {{ '300' | currency:'HUF' }} </span>
+                    <span class="font-bold"> {{ getTotal(cart.items) | currency:'HUF' }} </span>
                 </div>
 
                 <div class="pt-3 flex justify-between">
-                    <button class="bg-rose-600 text-white rounded-full w-10 h-10">
+                    <button (click)="OnClearCart()" class="bg-rose-600 text-white rounded-full w-10 h-10">
                       <mat-icon>remove_shopping_cart</mat-icon>
                     </button>
                     <button routerLink="cart" class="bg-green-600 text-white rounded-full w-10 h-10">
