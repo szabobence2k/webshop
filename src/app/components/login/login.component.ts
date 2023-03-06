@@ -66,4 +66,18 @@ export class LoginComponent implements OnInit {
     window.location.href = '/videos';
   }
 }
+function login() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  if (username == "admin" && password == "admin") {
+    // Bejelentkezés sikeres
+    location.href = "/home";
+    return true;
+  } else {
+    // Bejelentkezés sikertelen
+    document.getElementById("errorMessage").innerHTML = "Hibás felhasználónév vagy jelszó";
+    document.getElementById("errorMessage").style.display = "block";
+    return false;
+    }
+
 */

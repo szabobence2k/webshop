@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTreeModule } from '@angular/material/tree';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
@@ -23,6 +24,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PagesheaderComponent } from './pages/pagescomp/pagesheader/pagesheader.component';
 import { FiltersComponent } from './pages/pagescomp/filters/filters.component';
 import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesproduct.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesprodu
     HomeComponent,
     PagesheaderComponent,
     FiltersComponent,
-    PagesproductComponent
+    PagesproductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesprodu
     MatCardModule,
     MatIconModule,
     MatExpansionModule,
+    MatTreeModule,
     MatListModule,
     MatToolbarModule,
     MatTableModule,

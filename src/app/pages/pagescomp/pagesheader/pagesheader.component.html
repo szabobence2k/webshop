@@ -2,15 +2,15 @@
     <div class="flex justify-between">
         <div>
             <button mat-button [matMenuTriggerFor]="sortByMenu">
-                Rendezés ár szerint {{ sort }}
+                Rendezés
                 <mat-icon>expand_more</mat-icon>
             </button>
             <mat-menu #sortByMenu="matMenu">
                 <button (click)="onSortUpdated('csokkenoen')" mat-menu-item>
-                    Csökkenően
+                    Ár szerint csökkenően
                 </button>
                 <button (click)="onSortUpdated('novekvoen')" mat-menu-item>
-                    Növekvően
+                    Ár szerint növekvően
                 </button>
             </mat-menu>
         </div>

@@ -8,19 +8,53 @@ class="min-h-full max-w-7xl mx-auto border-x">
         </app-filters>
     </mat-drawer>
     <mat-drawer-content class="p-6">
-        <app-pagesheader (columnsCountChange)="onColumnsCountChange">
+        <app-pagesheader (columnsCountChange)="onColumnsCountChange($event)">
             
         </app-pagesheader>
         <mat-grid-list
-            gutterSize="15"
+            gutterSize="16"
             [cols]="cols"    
             [rowHeight]="rowHeight"
             >
             <mat-grid-tile>
-                <app-pagesproduct>
-                    
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
                 </app-pagesproduct>
-            </mat-grid-tile>       
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-pagesproduct class="w-full" [fullWidthMode]="cols == 1">
+
+                </app-pagesproduct>
+            </mat-grid-tile>
+
+
         </mat-grid-list>
     </mat-drawer-content>
 </mat-drawer-container>
