@@ -30,6 +30,8 @@ import { CartComponent } from './pages/cart/cart.component';
 
 import { CartService } from './services/cart.service';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import { CartService } from './services/cart.service';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,

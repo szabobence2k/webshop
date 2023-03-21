@@ -5,11 +5,11 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to top, grey, white);
+	background: lightgrey;
 }
 .main{
-	width: 350px;
-	height: 500px;
+	width: 500px;
+	height: 600px;
 	background: linear-gradient(to bottom, grey, white);
 	overflow: hidden;
 	border-radius: 10px;
@@ -35,7 +35,7 @@ label{
 }
 input{
 	width: 60%;
-	height: 20px;
+	height: 30px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
@@ -47,7 +47,7 @@ input{
 }
 button{
 	width: 60%;
-	height: 40px;
+	height: 50px;
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
@@ -63,13 +63,13 @@ button{
 	cursor: pointer;
 }
 button:hover{
-	background: #6d44b8;
+	background: green;
 }
 .login{
-	height: 460px;
+	height: 500px;
 	background: #eee;
-	border-radius: 60% / 10%;
-	transform: translateY(-180px);
+	border-radius: 60% / 15%;
+	transform: translateY(-200px);
 	transition: .8s ease-in-out;
 }
 .login label{
@@ -78,7 +78,7 @@ button:hover{
 }
 
 #chk:checked ~ .login{
-	transform: translateY(-500px);
+	transform: translateY(-600px);
 }
 #chk:checked ~ .login label{
 	transform: scale(1);	

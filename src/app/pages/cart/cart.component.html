@@ -1,6 +1,6 @@
 <mat-card *ngIf="cart.items.length" class="max-w-7xl mx-auto">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
-        <p>hiba</p>
+        <p>Hiba</p>
         <!-- product -->
         <ng-container matColumnDef="product">
             <th mat-header-cell *matHeaderCellDef>Termék</th>
@@ -69,7 +69,7 @@
                 </button>
             </td>
             <td mat-footer-cell *matFooterCellDef>
-                <button mat-raised-button color="primary" class="float-right">Tovább a fizetéshez</button>
+                <button (click)="onCheckout()" mat-raised-button color="primary" class="float-right">Tovább a fizetéshez</button>
             </td>
         </ng-container>
 
