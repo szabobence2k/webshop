@@ -8,6 +8,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(cors({ origin: true, credentials: true }));
 
+//stripe secret key
 const stripe = require("stripe")("sk_test_51MoAb7F2lsjejWaj5oIBoh7YXhPvZBURaisD3I4LG1RPBJSSpu8eISwQoKKRMi26qyl5wqBNdvB6uEoYFSug8inW00EBdJjzop");
 
 app.post("/checkout", async (req, res, next) => {
@@ -33,8 +34,8 @@ app.post("/checkout", async (req, res, next) => {
                       fixed_amount: {amount: 150000, currency: 'huf'},
                       display_name: 'Szállítás futárszolgálattal',
                       delivery_estimate: {
-                        minimum: {unit: 'business_day', value: 5},
-                        maximum: {unit: 'business_day', value: 7},
+                        minimum: {unit: 'business_day', value: 2},
+                        maximum: {unit: 'business_day', value: 3},
                       },
                     },
                   },

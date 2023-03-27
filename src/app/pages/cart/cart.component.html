@@ -79,12 +79,13 @@
     </table>
 </mat-card>
 
-<mat-card *ngIf="!cart.items.length" class="mx-auto my-3 max-w-7xl">
-    <p>
-     A kosarad üres
-     <button mat-raised-button routerLink="/home">
-       Vásárlás 
-     </button>
-    </p> 
+<mat-card *ngIf="!cart.items.length" class="mx-auto my-10 max-w-5xl">
+    <div class="text-center">
+        <font size="5">
+            <p>A kosarad üres</p>
+        </font>
+        <button mat-raised-button routerLink="/home">
+            Vásárlás 
+        </button>
+    </div> 
 </mat-card>
-

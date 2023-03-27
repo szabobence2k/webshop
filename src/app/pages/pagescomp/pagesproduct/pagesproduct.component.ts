@@ -10,16 +10,10 @@ export class PagesproductComponent implements OnInit {
 
   @Input() fullWidthMode = false;
 
-  product: Product | undefined = {
-    id: 1,
-    price: 4000,
-    title: 'Gumi',
-    category: 'Autók',
-    description: 'vmi',
-    image: 'https://via.placeholder.com/150',
-  };
+  @Input() product: Product | undefined;
   
   @Output() addToCart = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {

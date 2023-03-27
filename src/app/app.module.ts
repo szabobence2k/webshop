@@ -29,6 +29,7 @@ import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesprodu
 import { CartComponent } from './pages/cart/cart.component';
 
 import { CartService } from './services/cart.service';
+import { WebshopService } from './services/webshop.service';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -63,7 +64,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     MatSnackBarModule
   ],
-  providers: [CartService],
+  providers: [CartService, WebshopService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

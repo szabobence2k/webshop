@@ -3,13 +3,13 @@
         <div>
             <button mat-button [matMenuTriggerFor]="sortByMenu">
                 Rendezés
-                <mat-icon>expand_more</mat-icon>
+                <mat-icon>sort</mat-icon>
             </button>
             <mat-menu #sortByMenu="matMenu">
-                <button (click)="onSortUpdated('csokkenoen')" mat-menu-item>
+                <button (click)="onSortUpdated('desc')" mat-menu-item>
                     Ár szerint csökkenően
                 </button>
-                <button (click)="onSortUpdated('novekvoen')" mat-menu-item>
+                <button (click)="onSortUpdated('asc')" mat-menu-item>
                     Ár szerint növekvően
                 </button>
             </mat-menu>
@@ -18,22 +18,19 @@
         <div class="flex items-center">
             <div>
                 <button mat-button [matMenuTriggerFor]="menu">
-                    Show {{ itemsShowCount }}
+                    Megjelenített termékek: {{ itemsShow }}
                     <mat-icon>expand_more</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
                     <button (click)="onItemsUpdated(10)" mat-menu-item>
                         10
                     </button>
-                    <button (click)="onItemsUpdated(50)" mat-menu-item>
-                        50
+                    <button (click)="onItemsUpdated(25)" mat-menu-item>
+                        25
                     </button>
                     <button (click)="onItemsUpdated(100)" mat-menu-item>
                         100
                      </button>
-                    <button (click)="onItemsUpdated(200)" mat-menu-item>
-                        200
-                    </button>
                 </mat-menu>
             </div>
 

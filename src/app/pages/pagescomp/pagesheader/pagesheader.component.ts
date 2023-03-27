@@ -7,8 +7,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PagesheaderComponent implements OnInit {
   @Output() columnsCountChange = new EventEmitter<number>();
-  sort = 'csokkenoen';
-  itemsShowCount=10;
+  @Output() itemsCountChange = new EventEmitter<number>();
+  @Output() sortChange = new EventEmitter<string>();
+
+  sort = 'desc';
+  itemsShow = 10;
 
   constructor() { }
 
@@ -17,10 +20,12 @@ export class PagesheaderComponent implements OnInit {
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;
+    this.sortChange.emit(newSort);
   }
 
   onItemsUpdated(count: number): void {
-    this.itemsShowCount = count;
+    this.itemsShow = count;
+    this.itemsCountChange.emit(count);
   }
 
   onColumnsUpdated(columns: number): void {
