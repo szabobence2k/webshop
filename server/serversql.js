@@ -1,7 +1,6 @@
-"use strict";
-import express from "express";
-import bodyParser from "body-parser";
-import cors from 'cors';
+const express = require("express");
+const cors = require("cors");
+const bodyparser = require("body-parser");
 
 import {
   createProduct,
@@ -29,6 +28,6 @@ router.put("/server/product/:productId", updateProduct);
 
 router.delete("/server/product/:productId", deleteProduct);
 
-//server.use("/", router);
+app.use("/", router);
 
-//server.listen(port, () => console.log("Server started at port " + port));
+app.listen(port, () => console.log("Server started at port " + port));
