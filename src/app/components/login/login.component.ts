@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       email: '',
       password: '',
     };
+    this._snackBar.open('Sikeres regisztráció!', 'Rendben', { duration: 5000 });
   }
 
   onLogin(): void {
