@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -6,9 +6,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+@Injectable({
+  providedIn: 'root'
+})
+
 export class LoginComponent implements OnInit {
 
-  isAdmin = false;
+  isAdmin = true;
   loginUsers: any[] = [];
   registrationElements: any = {
     userName: '',
@@ -45,18 +49,16 @@ export class LoginComponent implements OnInit {
     const isUserExist = this.loginUsers.find(exist => exist.userName === this.loginElements.userName && exist.password === this.loginElements.password);
     if (isUserExist !== undefined && this.loginElements.userName !== 'admin' && this.loginElements.password !== 'admin') {
       this._snackBar.open('Sikeresen bejelentkezve!', 'Rendben', { duration: 5000 });
-      this.goShopping();
+      this.isAdmin = false;
+      window.location.href = '/home';
     }
     else if (this.loginElements.userName === 'admin' && this.loginElements.password === 'admin') {
       this._snackBar.open('Sikeresen bejelentkezve Adminként!', 'Rendben', { duration: 5000 });
-      window.location.href = '/cart';
+      this.isAdmin = true;
+      window.location.href = '/admin';
     }
     else {
       this._snackBar.open('Bejelentkezés sikertelen!', 'Rendben', { duration: 5000 });
     }
-  }
-  
-  goShopping(): void {
-    window.location.href = '/home';
   }
 }

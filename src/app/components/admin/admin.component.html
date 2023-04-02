@@ -1,0 +1,48 @@
+<mat-drawer-container 
+    *ngIf="iamAdmin"
+    [autosize]="true"
+    class="min-h-full max-w-5xl mx-auto border-x">
+
+    <mat-drawer-content class="p-20">
+        <div class="row">
+            <form>
+                <fieldset>
+                    <div>
+                        <h1>Termék neve: 
+                            <input type="text" class="form-control" name="" id="product"></h1>
+                    </div>
+                    <div>
+                        <h1>Termék ára: 
+                            <input type="number" class="form-control" id="price" name=""></h1>
+                    </div>
+                    <div>
+                        <h1>Termék kategóriája: 
+                            <input type="text" class="form-control" id="category" name=""></h1>
+                    </div>
+                    <div>
+                        <h1>Termék leírása: 
+                            <input type="text" class="form-control" id="description" name=""></h1>
+                    </div>
+                    <div>
+                        <h1>Termék képe: 
+                            <input type="text" class="form-control" id="image" name=""></h1>
+                    </div>
+            <br>
+            <button id="insert" color="primary" mat-raised-button>Létrehozás</button>
+            <font size="3">.     .</font>
+            <button id="create" color="primary" mat-raised-button>Új lista</button>
+            <font size="3">.     .</font>
+            <button id="list" color="primary" mat-raised-button>Frissítés</button>
+            <font size="3">.     .</font>
+            <button id="remove" color="warn" mat-raised-button>Termékek törlése {{onAdminCheck()}}</button>
+                </fieldset>
+            </form>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<mat-card *ngIf="!iamAdmin" class="mx-auto my-10 max-w-5xl">
+    <div class="text-center">
+        NEM VAGY ADMIN!
+    </div> 
+</mat-card>

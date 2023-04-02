@@ -27,6 +27,7 @@ import { PagesheaderComponent } from './pages/pagescomp/pagesheader/pagesheader.
 import { FiltersComponent } from './pages/pagescomp/filters/filters.component';
 import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesproduct.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 import { CartService } from './services/cart.service';
 import { WebshopService } from './services/webshop.service';
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     PagesheaderComponent,
     FiltersComponent,
     PagesproductComponent,
-    CartComponent
+    CartComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
