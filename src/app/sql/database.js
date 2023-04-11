@@ -1,4 +1,4 @@
-
+/*
 const sqlite3 = require('sqlite3').verbose();
 let sql;
 
@@ -12,7 +12,7 @@ const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) =
 /*sql = `INSERT INTO ProductsDB (name, category, description, image, price) VALUES (?,?,?,?,?)`;
 db.run(sql, ["gumi", "alkatrész", "jo allapotooooo", "xvzdd", 5000], (err) => {
   if (err) return console.error(err.message);
-});*/
+});
 
 //query data
 sql = `SELECT * FROM ProductsDB`;
@@ -28,3 +28,4 @@ db.all(sql, [], (err, rows) => {
     console.log(row);
   });
 });
+*/

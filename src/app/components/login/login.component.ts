@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegistration(): void {
+    if (this.loginUsers.find(exist => exist.userName === this.registrationElements.userName && exist.email === this.registrationElements.email) === undefined) {
     this.loginUsers.push(this.registrationElements);
     localStorage.setItem('loginUsers', JSON.stringify(this.loginUsers));
     this.registrationElements = {
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
       password: '',
     };
     this._snackBar.open('Sikeres regisztráció!', 'Rendben', { duration: 5000 });
+    } else {this._snackBar.open('Sikertelen regisztráció! A felhasználónév vagy e-mail cím foglalt!', 'Rendben', { duration: 5000 });}
   }
 
   onLogin(): void {

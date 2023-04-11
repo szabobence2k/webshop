@@ -65,4 +65,4 @@ app.post("/checkout", async (req, res, next) => {
     }
 });
 
-app.listen(4242, () => console.log('app is running on 4242'));
+app.listen(4242, () => console.log('Stripe API is running on 4242'));

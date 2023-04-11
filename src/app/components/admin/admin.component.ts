@@ -6,14 +6,21 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
 
   iamAdmin = true;
+  sql = '';
 
   constructor(private loginComponent: LoginComponent) { }
 
   ngOnInit(): void {
-    
+    /*const sqlite3 = require('sqlite3').verbose();
+
+    //connect to db
+    const db = new sqlite3.Database('./src/app/sql/database.db', sqlite3.OPEN_READWRITE, (err: { message: any; }) => {
+      if (err) return console.error(err.message);
+    });*/
   }
 
   onAdminCheck(): void {
