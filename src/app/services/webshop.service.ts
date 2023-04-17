@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product.model';
+import { Product, Category } from '../models/product.model';
 
-const STORE_URL = 'https://fakestoreapi.com';
+const STORE_URL = 'http://localhost:3000/api/products';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,25 @@ export class WebshopService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProducts(show = '10', sort = 'desc', category?: string): Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>> (
-      `${STORE_URL}/products${category ? '/category/' + category : ''}?sort=${sort}&limit=${show}`
-    )
+  getAllProducts(show = '10', sort = 'desc', category?: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(STORE_URL);
   }
 
   getAllCategories(): Observable<Array<string>> {
-    return this.httpClient.get<Array<string>> (
-      `${STORE_URL}/products/categories`
-    )
-  }  
+    return this.httpClient.get<string[]>("http://localhost:3000/api/products/category");
+  }
+
+
+  addProduct(price: number, title: string, category: string, description: string, image: string): Observable<Product> {
+    return this.httpClient.post<Product>(STORE_URL, { price, title, category, description, image });
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    const { id, price, name, category, description, image } = product;
+    return this.httpClient.put<Product>(`${STORE_URL}/${id}`, { price, name, category, description, image });
+  }
+
+  deleteProductById(id: number): Observable<any> {
+    return this.httpClient.delete(`${STORE_URL}/${id}`);
+  }
 }

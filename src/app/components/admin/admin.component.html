@@ -1,48 +1,136 @@
-<mat-drawer-container 
-    *ngIf="iamAdmin"
-    [autosize]="true"
-    class="min-h-full max-w-5xl mx-auto border-x">
+<mat-drawer-container *ngIf="iamAdmin" [autosize]="true" class="min-h-full max-w-5xl mx-auto border-x">
 
     <mat-drawer-content class="p-20">
+        <p></p>
+        <h1 class="text-center">Eladói Oldal</h1>
         <div class="row">
             <form>
                 <fieldset>
-                    <div>
-                        <h1>Termék neve: 
-                            <input type="text" class="form-control" name="" id="product"></h1>
-                    </div>
-                    <div>
-                        <h1>Termék ára: 
-                            <input type="number" class="form-control" id="price" name=""></h1>
-                    </div>
-                    <div>
-                        <h1>Termék kategóriája: 
-                            <input type="text" class="form-control" id="category" name=""></h1>
-                    </div>
-                    <div>
-                        <h1>Termék leírása: 
-                            <input type="text" class="form-control" id="description" name=""></h1>
-                    </div>
-                    <div>
-                        <h1>Termék képe: 
-                            <input type="text" class="form-control" id="image" name=""></h1>
-                    </div>
-            <br>
-            <button id="insert" color="primary" mat-raised-button>Létrehozás</button>
-            <font size="3">.     .</font>
-            <button id="create" color="primary" mat-raised-button>Új lista</button>
-            <font size="3">.     .</font>
-            <button id="list" color="primary" mat-raised-button>Frissítés</button>
-            <font size="3">.     .</font>
-            <button id="remove" color="warn" mat-raised-button>Termékek törlése {{onAdminCheck()}}</button>
+
+                    <mat-card class="mx-auto max-w-5xl">
+                        <div>
+                            <div>
+                                <h1>Termék neve:
+                                    <input style="width:500px; height:50px;" [(ngModel)]="name"
+                                        placeholder="Adja meg a termék nevét" [ngModelOptions]="{ standalone: true }">
+                                </h1>
+                            </div>
+                            <div>
+                                <h1>Termék ára:
+                                    <input style="width:500px; height:50px;" [(ngModel)]="price"
+                                        placeholder="Adja meg a termék árát" [ngModelOptions]="{ standalone: true }">
+                                </h1>
+                            </div>
+                            <div>
+                                <h1>Termék kategóriája:
+                                    <input style="width: 500px; height: 50px;" [(ngModel)]="category"
+                                        placeholder="Adja meg a termék kategóriáját"
+                                        [ngModelOptions]="{ standalone: true }">
+                                </h1>
+                            </div>
+                            <div>
+                                <h1>Termék képe:
+                                    <input style="width:500px; height:50px;" [(ngModel)]="image"
+                                        placeholder="Adja meg a termék képének elérési útját"
+                                        [ngModelOptions]="{ standalone: true }">
+                                </h1>
+                            </div>
+                            <div>
+                                <h1>Termék leírása:
+                                    <input multiline style="width:500px; height:50px;" [(ngModel)]="description"
+                                        placeholder="Adja meg a termék leírását"
+                                        [ngModelOptions]="{ standalone: true }">
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button color="primary" (click)="onAddProduct()" mat-raised-button>Létrehozás</button>
+                        </div>
+                    </mat-card>
                 </fieldset>
             </form>
         </div>
     </mat-drawer-content>
+
+    <mat-drawer-content class="p-20">
+        <p></p>
+        <h1 class="text-center">Termékek Listája</h1>
+
+        <li *ngFor="let product of products">
+            <div>
+                <input style="width:100px; height:50px;" class="truncate hover:whitespace-normal" type="number"
+                    [(ngModel)]="product.price" (change)="onUpdateProduct(product)" />
+                <input style="width:150px; height:50px;" class="truncate hover:whitespace-normal" type="text"
+                    [(ngModel)]="product.name" (change)="onUpdateProduct(product)" />
+                <input style="width:150px; height:50px;" class="truncate hover:whitespace-normal" type="text"
+                    [(ngModel)]="product.category" (change)="onUpdateProduct(product)" />
+                <input style="width:350px; height:50px;" class="truncate hover:whitespace-normal" type="text"
+                    [(ngModel)]="product.description" (change)="onUpdateProduct(product)" />
+                <input style="width:150px; height:50px;" class="truncate hover:whitespace-normal" type="text"
+                    [(ngModel)]="product.image" (change)="onUpdateProduct(product)" />
+                <button style="float:right" (click)="onDeleteProduct(product)" color="warn"
+                    mat-raised-button>Törlés</button>
+            </div>
+        </li>
+    </mat-drawer-content>
+
+    <!--table mat-table [dataSource]="products" class="mat-elevation-z8 w-full">
+        <!-- image ->
+        <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef>Termék</th>
+            <td mat-cell *matCellDef="let product">
+                <img src="{{ product.image }}" alt="product" class="w-[100px] my-5" />
+            </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+        
+        <!-- name ->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Név</th>
+            <td mat-cell *matCellDef="let product">
+                <p class="truncate max-w-xs block">{{ product.name }}</p>
+            </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <!-- price ->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Ár</th>
+            <td mat-cell *matCellDef="let product">
+                {{ product.price | currency:'HUF' }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+        
+        <!-- action ->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let product">
+                <button (click)="onDeleteProduct(product)" mat-mini-fab color="warn" class="float-right">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table-->
+
 </mat-drawer-container>
+
+<form (submit)="onAddProduct()">
+    <input [(ngModel)]="price" placeholder="Add an Item price" [ngModelOptions]="{ standalone: true }" />
+    <input [(ngModel)]="name" placeholder="Add an Item name" [ngModelOptions]="{ standalone: true }" />
+    <input [(ngModel)]="category" placeholder="Add an Item category" [ngModelOptions]="{ standalone: true }" />
+    <input [(ngModel)]="description" placeholder="Add an Item description" [ngModelOptions]="{ standalone: true }" />
+    <input [(ngModel)]="image" placeholder="Add an Item image" [ngModelOptions]="{ standalone: true }" />
+    <button type="submit">Létrehozás</button>
+</form>
 
 <mat-card *ngIf="!iamAdmin" class="mx-auto my-10 max-w-5xl">
     <div class="text-center">
         NEM VAGY ADMIN!
-    </div> 
+    </div>
 </mat-card>

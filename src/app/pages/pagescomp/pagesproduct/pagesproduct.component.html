@@ -7,7 +7,7 @@
         <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
             <div>
                 <h5>{{ product.category }}</h5>
-                <p class="truncate hover:whitespace-normal" [ngClass]="{truncate: !fullWidthMode}">{{ product.title }}</p>
+                <p class="truncate hover:whitespace-normal" [ngClass]="{truncate: !fullWidthMode}">{{ product.name }}</p>
                 <p *ngIf="fullWidthMode">{{ product.description }}</p>
             </div>
 

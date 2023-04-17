@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   cols = 3;
   rowHeight = ROW_HEIGHT[this.cols];
   category: string | undefined;
-  products: Array<Product> | undefined;
+  products: Product[] = [];
   sort = 'desc';
   count = '10';
   productsSubcripion: Subscription | undefined;
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onaddToCart(product: Product): void {
     this.cartService.addToCart({
       product: product.image,
-      name: product.title,
+      name: product.name,
       price: product.price,
       quantity: 1,
       id: product.id,

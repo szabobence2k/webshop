@@ -1,10 +1,10 @@
 --CREATE TABLE ProductsDB (
---	id INTEGER  PRIMARY KEY,
+--	id INTEGER  PRIMARY KEY AUTOCREMENT,
 --	name TEXT,
 --	price INTEGER,
 --	category TEXT,
---    description TEXT,
---    image TEXT
+--  description TEXT,
+--  image TEXT
 --	);
 
 -- INSERT INTO ProductsDB (name, category, description, image, price) VALUES 
