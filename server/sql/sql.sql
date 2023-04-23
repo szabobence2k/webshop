@@ -1,5 +1,5 @@
 --CREATE TABLE ProductsDB (
---	id INTEGER  PRIMARY KEY AUTOCREMENT,
+--	id INTEGER  PRIMARY KEY AUTOINCREMENT,
 --	name TEXT,
 --	price INTEGER,
 --	category TEXT,

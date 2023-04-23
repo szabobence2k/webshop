@@ -9,7 +9,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true, credentials: true }));
 
-const db = new sqlite3.Database('./sql/database.db');
+//adatbázis létrehozása
+const db = new sqlite3.Database('./sql/database.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+});
+
+const createProductsTable = () => {
+  const sql = `
+    CREATE TABLE IF NOT EXISTS ProductsDB (
+    	id INTEGER  PRIMARY KEY AUTOINCREMENT,
+    	name TEXT,
+    	price INTEGER,
+    	category TEXT,
+      description TEXT,
+      image TEXT
+    )
+  `;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+  });
+};
+
+createProductsTable();
 
 //products
 app.get('/api/products', (req, res) => {
@@ -42,13 +68,13 @@ app.get('/api/products/category', (req, res) => {
 app.post('/api/products', (req, res) => {
   const { name, price, category, description, image } = req.body;
 
-  if (!name || !price || !category || !descripion || !image ) {
+  if (!name || !price || !category || !description || !image ) {
     res.status(400).json({ error: 'Invalid input' });
     return;
   }
 
   const sql = 'INSERT INTO ProductsDB (name, price, category, description, image) VALUES(?, ?, ?, ?, ?)';
-  const params = [name, price, category, description, image ];
+  const params = [ name, price, category, description, image ];
 
   db.run(sql, params, function(err) {
     if (err) {
@@ -70,14 +96,14 @@ app.post('/api/products', (req, res) => {
 app.put('/api/products/:id', (req, res) => {
   const { name, price, category, description, image } = req.body;
 
-  if (!name || !price || !category || !descripion || !image ) {
+  if (!name || !price || !category || !description || !image ) {
     res.status(400).json({ error: 'Invalid input' });
     return;
   }
 
   const { id } = req.params;
-  const sql = 'UPDATE ProductDB SET name = ?, price = ?, category = ?, description = ?, image = ? WHERE id = ?';
-  const params = [name, price, category, description, image, id ];
+  const sql = 'UPDATE ProductsDB SET name = ?, price = ?, category = ?, description = ?, image = ? WHERE id = ?';
+  const params = [ name, price, category, description, image, id ];
 
   db.run(sql, params, function(err) {
     if (err) {
@@ -98,7 +124,7 @@ app.put('/api/products/:id', (req, res) => {
 
 app.delete('/api/products/:id', (req, res) => {
   const { id } = req.params;
-  const sql = 'DELETE FROM ProductDB WHERE id = ?';
+  const sql = 'DELETE FROM ProductsDB WHERE id = ?';
 
   db.run(sql, id, function(err) {
     if (err) {

@@ -21,8 +21,8 @@ export class WebshopService {
   }
 
 
-  addProduct(price: number, title: string, category: string, description: string, image: string): Observable<Product> {
-    return this.httpClient.post<Product>(STORE_URL, { price, title, category, description, image });
+  addProduct(price: number, name: string, category: string, description: string, image: string): Observable<Product> {
+    return this.httpClient.post<Product>(STORE_URL, { price, name, category, description, image });
   }
 
   updateProduct(product: Product): Observable<Product> {

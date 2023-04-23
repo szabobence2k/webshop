@@ -12,7 +12,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
   @Output() showCategory = new EventEmitter<string>();
 
   categoriesSubscription: Subscription | undefined;
-  categories: Array<string> | undefined;
+  categories: string[] = [];
 
   constructor(private webshopService: WebshopService) { }
 
