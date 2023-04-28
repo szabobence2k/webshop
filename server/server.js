@@ -4,6 +4,13 @@ const bodyparser = require("body-parser");
 
 const app = express();
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser('your-secret-key', {
+  sameSite: 'none',
+  httpOnly: false,
+  secure: false
+}));
+
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -56,6 +63,7 @@ app.post("/checkout", async (req, res, next) => {
             mode: "payment",
             success_url: "http://localhost:4242/success.html",
             cancel_url: "http://localhost:4242/cancel.html",
+            payment_method_types: ["card"],
         });
 
         res.status(200).json(session);

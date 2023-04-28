@@ -41,7 +41,9 @@
                                         placeholder="Adja meg a termék képének elérési linkjét"
                                         [ngModelOptions]="{ standalone: true }">
                                 </h1>
-                                <h4>Megjegyzés: Használja az alábbi oldalt a kép beszúrásához:   https://www.linkpicture.com/en/index.php</h4>
+                                <a href="https://www.linkpicture.com/en/index.php">Megjegyzés: Használja az alábbi oldalt a kép beszúrásához:
+                                    https://www.linkpicture.com/en/index.php</a>
+                                    <h3></h3>
                             </div>
                         </div>
                         <div class="text-center">
@@ -75,8 +77,9 @@
         </li>
     </mat-drawer-content>
 
-<mat-card *ngIf="!iamAdmin" class="mx-auto my-10 max-w-5xl">
-    <div class="text-center">
-        NEM VAGY ADMIN!
-    </div>
-</mat-card>
+    <mat-card *ngIf="!iamAdmin" class="mx-auto my-10 max-w-5xl">
+        <div class="text-center">
+            NEM VAGY ADMIN!
+        </div>
+    </mat-card>
+</mat-drawer-container>

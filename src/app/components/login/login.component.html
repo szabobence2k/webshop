@@ -10,18 +10,34 @@
 					<input type="userName" name="userName" placeholder="Felhasználónév" [(ngModel)]="registrationElements.userName">
 					<input type="email" name="email" placeholder="Email" [(ngModel)]="registrationElements.email">
 					<input type="password" name="password" placeholder="Jelszó" [(ngModel)]="registrationElements.password">
-					<button (click)="onRegistration()">Új fiók létrehozása</button>
+					<button (click)="onRegistration()" name="registrationButton">Új fiók létrehozása</button>
 				</form>
 			</div>
 
 			<div class="login">
 				<form>
-					<label for="chk" aria-hidden="true">Bejelentkezés</label>
-					<input type="userName" name="userName" placeholder="Felhasználónév"  [(ngModel)]="loginElements.userName">
-					<input type="password" name="password" placeholder="Jelszó" [(ngModel)]="loginElements.password">
-					<button (click)="onLogin()">Bejelentkezés</button>
+					<label for="chk" aria-hidden="true" name="loginLabel"><span>Bejelentkezés</span></label>
+					<input type="userName" name="loginUserName" placeholder="Felhasználónév"  [(ngModel)]="loginElements.userName">
+					<input type="password" name="loginPassword" placeholder="Jelszó" [(ngModel)]="loginElements.password">
+					<button (click)="onLogin()" name="login">Bejelentkezés</button>
 				</form>
 			</div>
 	</div>
 </body>
+<footer class="text-center text-lg-start bg-light text-muted">
+    <div class="container text-center text-md-start mt-1">
+        <div class="row mt-1">
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <font size="4"><a routerLink="/contact">Kapcsolat</a></font>
+            </div>
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <font size="4"><a routerLink="/datamanagement">Adatkezelési tájékoztató</a></font>
+            </div>
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <font size="4"><a routerLink="/information">Céginfó, jogi információk</a></font>
+            </div>
+			<h5>.</h5>
+        </div>
+    </div>
+</footer>
 </html>

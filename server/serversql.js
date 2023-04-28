@@ -5,6 +5,13 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const port = process.env.PORT || 3000;
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser('your-secret-key', {
+  sameSite: 'none',
+  httpOnly: false,
+  secure: false
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true, credentials: true }));
@@ -53,7 +60,7 @@ app.get('/api/products', (req, res) => {
 
 //categories
 app.get('/api/products/category', (req, res) => {
-  const sql = 'SELECT category FROM ProductsDB';
+  const sql = 'SELECT category FROM ProductsDB GROUP BY category';
 
   db.all(sql, [], (err, rows) => {
     if (err) {

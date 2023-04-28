@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product, Category } from '../models/product.model';
+import { Product } from '../models/product.model';
 
 const STORE_URL = 'http://localhost:3000/api/products';
 
@@ -16,7 +16,7 @@ export class WebshopService {
     return this.httpClient.get<Product[]>(STORE_URL);
   }
 
-  getAllCategories(): Observable<Array<string>> {
+  getAllCategories(): Observable<string[]> {
     return this.httpClient.get<string[]>("http://localhost:3000/api/products/category");
   }
 

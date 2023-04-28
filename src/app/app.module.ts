@@ -28,6 +28,9 @@ import { FiltersComponent } from './pages/pagescomp/filters/filters.component';
 import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesproduct.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ContactComponent } from './footer/contact/contact.component';
+import { InformationComponent } from './footer/information/information.component';
+import { DatamanagementComponent } from './footer/datamanagement/datamanagement.component';
 
 import { CartService } from './services/cart.service';
 import { WebshopService } from './services/webshop.service';
@@ -44,7 +47,10 @@ import { HttpClientModule } from '@angular/common/http';
     FiltersComponent,
     PagesproductComponent,
     CartComponent,
-    AdminComponent
+    AdminComponent,
+    ContactComponent,
+    InformationComponent,
+    DatamanagementComponent
   ],
   imports: [
     BrowserModule,
