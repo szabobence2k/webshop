@@ -1,8 +1,8 @@
 import { Product } from 'src/app/models/product.model';
-import { LoginComponent } from './../login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { Component, OnInit } from '@angular/core';
 import { WebshopService } from 'src/app/services/webshop.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -20,7 +20,15 @@ export class AdminComponent implements OnInit {
   description: string = '';
   image: string = '';
 
-  constructor(private loginComponent: LoginComponent, private webshopService: WebshopService, private _snackBar: MatSnackBar) { }
+  action = 'OK';
+
+  private configSuccess: MatSnackBarConfig = {
+    duration: 5000,
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom'
+  };
+
+  constructor(private loginComponent: LoginComponent, private webshopService: WebshopService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.webshopService.getAllProducts().subscribe(_products => {
@@ -38,10 +46,8 @@ export class AdminComponent implements OnInit {
   }
 
   onAddProduct(): void {
-    if (!this.name.trim()) {
-      return;
-    }
-  
+    if (!this.name.trim()) return;
+
     this.webshopService.addProduct(this.price, this.name, this.category, this.description, this.image).subscribe(_products => {
       this.products.push(_products);
       this.price = 0;
@@ -49,8 +55,8 @@ export class AdminComponent implements OnInit {
       this.category = '';
       this.description = '';
       this.image = '';
-      
-    this._snackBar.open('1 termék hozzáadva a listához.', 'Rendben', { duration: 5000 });
+
+      this.snackBar.open('1 termék hozzáadva a listához.', this.action, this.configSuccess);
     });
   }
 
@@ -60,15 +66,15 @@ export class AdminComponent implements OnInit {
       this.products[index] = updatedProduct;
     });
 
-    this._snackBar.open('1 termék frissítve.', 'Rendben', { duration: 5000 });
+    this.snackBar.open('1 termék frissítve.', this.action, this.configSuccess);
   }
 
   onDeleteProduct(product: Product): void {
     this.webshopService.deleteProductById(product.id).subscribe(() => {
       this.products = this.products.filter(p => p.id !== product.id);
     });
-    
-    this._snackBar.open('1 termék törölve.', 'Rendben', { duration: 5000 });
+
+    this.snackBar.open('1 termék törölve.', this.action, this.configSuccess);
   }
 
 }

@@ -1,4 +1,4 @@
-import { WebshopService } from './../../services/webshop.service';
+import { WebshopService } from '../../services/webshop.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
@@ -12,14 +12,13 @@ const ROW_HEIGHT: { [id: number]: number } = { 1:400, 3:335 };
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   cols = 3;
   rowHeight = ROW_HEIGHT[this.cols];
   category: string | undefined;
   products: Product[] = [];
   sort = 'desc';
   count = '10';
-  productsSubcripion: Subscription | undefined;
+  productsSubscription: Subscription | undefined;
 
   constructor(private cartService: CartService, private webshopService: WebshopService) { }
 
@@ -29,9 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProducts(): void {
     this.webshopService.getAllProducts(this.count, this.sort, this.category)
-    .subscribe((_products) => {
-      this.products = _products
-    });
+      .subscribe(products => this.products = products);
   }
 
   onColumnsCountChange(columnsNum: number): void {
@@ -39,12 +36,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.rowHeight = ROW_HEIGHT[this.cols];
   }
 
-  onShowCategory(newcategory: string): void {
-    this.category = newcategory;
+  onShowCategory(newCategory: string): void {
+    this.category = newCategory;
     this.getProducts();
   }
 
-  onaddToCart(product: Product): void {
+  onAddToCart(product: Product): void {
     this.cartService.addToCart({
       product: product.image,
       name: product.name,
@@ -54,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  onitemsCountChange(newCount: number): void {
+  onItemsCountChange(newCount: number): void {
     this.count = newCount.toString();
     this.getProducts();
   }
@@ -65,8 +62,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.productsSubcripion) {
-      this.productsSubcripion.unsubscribe();
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
     }
   }
 

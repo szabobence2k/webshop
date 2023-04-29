@@ -1,6 +1,6 @@
-import { Subscription } from 'rxjs';
-import { WebshopService } from './../../../services/webshop.service';
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subscription} from 'rxjs';
+import { WebshopService } from '../../../services/webshop.service';
 
 @Component({
   selector: 'app-filters',
@@ -18,13 +18,12 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.categoriesSubscription = this.webshopService.getAllCategories()
-      .subscribe((response: string[]) => {
-        this.categories = response;
-      });
+      .subscribe((categories) => this.categories = categories);
   }
 
-  onShowCategory(category: string): void {
-    this.showCategory.emit(category);
+  onShowCategory(newCategory: string): void {
+    console.log('Category:', newCategory);
+    this.showCategory.emit(newCategory);
   }
 
   ngOnDestroy(): void {
@@ -32,5 +31,4 @@ export class FiltersComponent implements OnInit, OnDestroy {
       this.categoriesSubscription.unsubscribe();
     }
   }
-
 }

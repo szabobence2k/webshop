@@ -1,16 +1,13 @@
-<mat-expansion-panel *ngIf="categories">
+<mat-accordion>
+  <mat-expansion-panel *ngIf="categories">
     <mat-expansion-panel-header>
-        <mat-panel-title>
-            Kategóriák
-        </mat-panel-title>
+      <mat-panel-title>Kategóriák</mat-panel-title>
     </mat-expansion-panel-header>
 
-    <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let category of categories" [value]="category">
-            <button (click)="onShowCategory(category)">
-                <!--{{ category }}-->
-                Autó
-            </button>
-        </mat-list-option>
+    <mat-selection-list [multiple]="false" color="primary">
+      <mat-list-option *ngFor="let category of categories" [value]="categories">
+        <button (click)="onShowCategory(category)">{{ category }}</button>
+      </mat-list-option>
     </mat-selection-list>
-</mat-expansion-panel>
+  </mat-expansion-panel>
+</mat-accordion>

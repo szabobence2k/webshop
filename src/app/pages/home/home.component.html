@@ -1,40 +1,41 @@
-<mat-drawer-container [autosize]="true" class="min-h-full max-w-7xl mx-auto border-x">
+<mat-sidenav-container class="drawer-container">
+  <mat-sidenav #sidenav mode="side" opened class="p-6">
+    <app-filters (showCategory)="onShowCategory($event)"></app-filters>
+  </mat-sidenav>
 
-    <mat-drawer mode="side" opened class="p-6">
-        <app-filters (showCategory)="onShowCategory($event)">
 
-        </app-filters>
-    </mat-drawer>
-    <mat-drawer-content class="p-6">
-        <app-pagesheader (columnsCountChange)="onColumnsCountChange($event)"
-            (itemsCountChange)="onitemsCountChange($event)" (sortChange)="onSortChange($event)">
+  <mat-sidenav-content class="p-6 drawer-content">
+    <app-pagesheader
+      (columnsCountChange)="onColumnsCountChange($event)"
+      (itemsCountChange)="onItemsCountChange($event)"
+      (sortChange)="onSortChange($event)">
+    </app-pagesheader>
 
-        </app-pagesheader>
-        <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
-            <mat-grid-tile *ngFor="let product of products">
-                <app-pagesproduct [product]="product" (addToCart)="onaddToCart($event)" class="w-full"
-                    [fullWidthMode]="cols === 1">
+    <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+      <mat-grid-tile *ngFor="let product of products">
+        <app-pagesproduct
+          [product]="product"
+          [fullWidthMode]="cols === 1"
+          (addToCart)="onAddToCart($event)" class="w-full">
+        </app-pagesproduct>
+      </mat-grid-tile>
+    </mat-grid-list>
 
-                </app-pagesproduct>
-            </mat-grid-tile>
-
-        </mat-grid-list>
-    </mat-drawer-content>
-</mat-drawer-container>
-
-<footer class="text-center text-lg-start bg-light text-muted">
-    <div class="container text-center text-md-start mt-1">
+    <footer class="text-center text-lg-start bg-light text-muted">
+      <div class="container text-center text-md-start mt-1">
         <div class="row mt-1">
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <font size="4"><a routerLink="/contact">Kapcsolat</a></font>
-            </div>
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <font size="4"><a routerLink="/datamanagement">Adatkezelési tájékoztató</a></font>
-            </div>
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <font size="4"><a routerLink="/information">Céginfó, jogi információk</a></font>
-            </div>
-            <h5>.</h5>
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <font size="4"><a routerLink="/contact">Kapcsolat</a></font>
+          </div>
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <font size="4"><a routerLink="/datamanagement">Adatkezelési tájékoztató</a></font>
+          </div>
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <font size="4"><a routerLink="/information">Céginfó, jogi információk</a></font>
+          </div>
+          <h5>.</h5>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

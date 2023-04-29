@@ -10,7 +10,7 @@
                 <button mat-raised-button routerLink="/home">Vásárlás folytatása</button>
             </td>
         </ng-container>
-        
+
         <!-- name -->
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Név</th>
@@ -28,7 +28,7 @@
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
-        
+
         <!-- quantity -->
         <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef>Darab</th>
@@ -79,12 +79,8 @@
 </mat-card>
 
 <mat-card *ngIf="!cart.items.length" class="mx-auto my-10 max-w-5xl">
-    <div class="text-center">
-        <font size="5">
-            <p>A kosarad üres</p>
-        </font>
-        <button mat-raised-button routerLink="/home">
-            Vásárlás 
-        </button>
-    </div> 
+  <div class="text-center">
+    <div class="empty-cart">A kosarad üres</div>
+    <button mat-raised-button routerLink="/home" color="primary">Vásárlás</button>
+  </div>
 </mat-card>

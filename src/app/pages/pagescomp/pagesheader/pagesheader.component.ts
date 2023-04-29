@@ -1,22 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pagesheader',
   templateUrl: './pagesheader.component.html',
   styleUrls: ['./pagesheader.component.css']
 })
-export class PagesheaderComponent implements OnInit {
+export class PagesheaderComponent {
   @Output() columnsCountChange = new EventEmitter<number>();
   @Output() itemsCountChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<string>();
 
   sort = 'desc';
   itemsShow = 10;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;

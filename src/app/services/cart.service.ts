@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/product.model';
 
@@ -7,14 +7,20 @@ import { Cart, CartItem } from '../models/product.model';
   providedIn: 'root'
 })
 export class CartService {
-
   cart = new BehaviorSubject<Cart>({items: []});
 
-  constructor(private _snackBar: MatSnackBar) { }
+  action = 'OK';
+
+  private configSuccess: MatSnackBarConfig = {
+    duration: 5000,
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom'
+  };
+
+  constructor(private snackBar: MatSnackBar) { }
 
   addToCart(item: CartItem): void {
     const items = [...this.cart.value.items];
-
     const itemsInCart = items.find((_item) => _item.id === item.id);
 
     if (itemsInCart) {
@@ -26,7 +32,7 @@ export class CartService {
 
     this.cart.next({ items })
 
-    this._snackBar.open('1 termék hozzáadva a kosárhoz.', 'Rendben', { duration: 5000 });
+    this.snackBar.open('1 termék hozzáadva a kosárhoz.', this.action, this.configSuccess );
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -37,7 +43,7 @@ export class CartService {
 
   clearCart(): void {
     this.cart.next({ items: [] });
-    this._snackBar.open('Összes termék eltávolítva a kosárból.', 'Rendben', { duration: 5000 });
+    this.snackBar.open('Összes termék eltávolítva a kosárból.', this.action, this.configSuccess );
   }
 
   removeFromCart(item: CartItem, update = true): Array<CartItem> {
@@ -46,7 +52,7 @@ export class CartService {
     if (update) {
       this.cart.next({ items: filteredItems });
 
-      this._snackBar.open('1 termék eltávolítva a kosárból.', 'Rendben', { duration: 5000 });
+      this.snackBar.open('1 termék eltávolítva a kosárból.', this.action, this.configSuccess );
     }
 
     return filteredItems;
@@ -57,10 +63,10 @@ export class CartService {
     let filteredItems = this.cart.value.items.map((_item) => {
       if (_item.id === item.id) {
         _item.quantity--;
-        this._snackBar.open('1 termék eltávolítva a kosárból.', 'Rendben', { duration: 5000 });
+        this.snackBar.open('1 termék eltávolítva a kosárból.', this.action, this.configSuccess );
         if (_item.quantity === 0) {
           itemForRemoval = _item;
-          this._snackBar.open('A kosár üres.', 'Rendben', { duration: 5000 });
+          this.snackBar.open('A kosár üres.', this.action, this.configSuccess );
         }
       }
       return _item;

@@ -1,7 +1,6 @@
 <mat-drawer-container *ngIf="iamAdmin" [autosize]="true" class="min-h-full max-w-5xl mx-auto border-x">
 
     <mat-drawer-content class="p-20">
-        <p></p>
         <h1 class="text-center">Eladói Oldal</h1>
         <div class="row">
             <form>
@@ -55,8 +54,7 @@
         </div>
     </mat-drawer-content>
 
-    <mat-drawer-content class="p-20">
-        <p></p>
+    <mat-drawer-content class="p-30">
         <h1 class="text-center">Termékek Listája</h1>
 
         <li *ngFor="let product of products">

@@ -1,6 +1,5 @@
 <div *ngIf="router.url !== '/login'">
-    <app-header [cart]="cart"></app-header>
+  <app-header [cart]="cart"></app-header>
 </div>
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+
+<router-outlet></router-outlet>

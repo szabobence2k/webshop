@@ -1,25 +1,20 @@
 <mat-card *ngIf="product" [ngClass]="{'text-center': !fullWidthMode}">
-    <div [ngClass]="{flex: fullWidthMode}">
-        <img class="mb-1 mx-auto" 
-        [ngClass]="{'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode}"
-           [src]="product.image" (click)="onaddToCart()"
-        />
-        <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
-            <div>
-                <h5>{{ product.category }}</h5>
-                <p class="truncate hover:whitespace-normal" [ngClass]="{truncate: !fullWidthMode}">{{ product.name }}</p>
-                <p *ngIf="fullWidthMode">{{ product.description }}</p>
-            </div>
-            
-            <div class="flex justify-between">
-                <font size="4">
-                    <p class="text-red-500">{{ product.price + ' FT' }}</p>
-                </font>
-                <button (click)="onaddToCart()">
-                    <mat-icon class="text-gray-500" name="addToCartIcon">shopping_cart</mat-icon>
-                </button>
-            </div>
-        </div>
-    </div>    
+  <div [ngClass]="{flex: fullWidthMode}">
+    <img class="mb-1 mx-auto" [ngClass]="{'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode}" [src]="product.image" (click)="onAddToCart()" />
+    <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
+      <div>
+        <h5>{{ product.category }}</h5>
+        <p class="truncate hover:whitespace-normal" [ngClass]="{truncate: !fullWidthMode}">{{ product.name }}</p>
+        <p *ngIf="fullWidthMode">{{ product.description }}</p>
+      </div>
+
+      <div class="flex justify-between">
+        <span class="m-auto ml-16 price">{{ product.price + ' FT' }}</span>
+        <button mat-mini-fab color="primary" (click)="onAddToCart()">
+          <mat-icon class="text-gray-500 text-white" name="addToCartIcon">shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </mat-card>
 
