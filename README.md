@@ -1,6 +1,6 @@
 # Webshop - Szabó Bence EAA56F
 
-A webalkalmazásom egy home és shoppingcart oldalból áll. Valamint a bejelentkezésnél lehetőségünk lesz admin, illetve vásárlói bejelentkezésre.
+A webalkalmazásom egy home, admin és shoppingcart oldalból áll. A bejelentkezésnél lehetőségünk van admin, illetve vásárlói bejelentkezésre/regisztrálásra.
 
 PROGRAM FUTTATÁSA:
 
