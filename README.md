@@ -2,6 +2,13 @@
 
 A webalkalmazásom egy home és shoppingcart oldalból áll. Valamint a bejelentkezésnél lehetőségünk lesz admin, illetve vásárlói bejelentkezésre.
 
+PROGRAM FUTTATÁSA:
+
+-> ng serve             // src/app mappában
+-> node server.js       //server mappában
+-> node serversql.js    //server mappában
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
 
 ## Development server
