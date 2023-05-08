@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   onRegistration(): void {
-    if (this.loginUsers.find(exist => exist.userName === this.registrationElements.userName && exist.email === this.registrationElements.email) === undefined) {
+    if (this.loginUsers.find(exist => exist.userName === this.registrationElements.userName || exist.email === this.registrationElements.email) === undefined) {
       this.loginUsers.push(this.registrationElements);
       localStorage.setItem('loginUsers', JSON.stringify(this.loginUsers));
       this.registrationElements = {
