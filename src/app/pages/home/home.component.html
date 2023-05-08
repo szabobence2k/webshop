@@ -1,6 +1,6 @@
 <mat-sidenav-container class="drawer-container">
   <mat-sidenav #sidenav mode="side" opened class="p-6">
-    <app-filters (showCategory)="onShowCategory($event)"></app-filters>
+    <app-filters (categorySelected)="onCategorySelected($event)"></app-filters>
   </mat-sidenav>
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { WebshopService } from '../../../services/webshop.service';
 
 @Component({
@@ -8,8 +8,7 @@ import { WebshopService } from '../../../services/webshop.service';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit, OnDestroy {
-
-  @Output() showCategory = new EventEmitter<string>();
+  @Output() categorySelected = new EventEmitter<string>();
 
   categoriesSubscription: Subscription | undefined;
   categories: string[] = [];
@@ -17,13 +16,18 @@ export class FiltersComponent implements OnInit, OnDestroy {
   constructor(private webshopService: WebshopService) { }
 
   ngOnInit(): void {
-    this.categoriesSubscription = this.webshopService.getAllCategories()
-      .subscribe((categories) => this.categories = categories);
+    this.getCategories();
   }
 
-  onShowCategory(newCategory: string): void {
-    console.log('Category:', newCategory);
-    this.showCategory.emit(newCategory);
+  getCategories(): void {
+    this.categoriesSubscription = this.webshopService.getAllCategories()
+      .subscribe((categories: any[]) => {
+        return this.categories = categories.map((item) => item.category);
+      });
+  }
+
+  filterByCategory(category: string): void {
+    this.categorySelected.emit(category);
   }
 
   ngOnDestroy(): void {
