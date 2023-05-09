@@ -144,5 +144,5 @@ app.delete('/api/products/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`ServerSQL started on port ${port}`);
+  console.log(`SQL Server started on port ${port}`);
 });
