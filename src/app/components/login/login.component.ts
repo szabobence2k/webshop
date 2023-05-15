@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     userName: '',
     email: '',
     password: '',
+    address: '',
   };
 
   loginElements: any = {
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
         userName: '',
         email: '',
         password: '',
+        address: '',
       };
 
       this.snackBar.open('Sikeres regisztráció!', this.action, this.configSuccess);

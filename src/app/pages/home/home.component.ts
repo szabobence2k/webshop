@@ -31,19 +31,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(products => this.products = products);
   }
 
-  onCategorySelected(category: string): void {
-    this.category = category;
+  onCategorySelected(newCategory: string): void {
+    this.category = newCategory;
     this.getProducts();
   }
 
   onColumnsCountChange(columnsNum: number): void {
     this.cols = columnsNum;
     this.rowHeight = ROW_HEIGHT[this.cols];
-  }
-
-  onShowCategory(newCategory: string): void {
-    this.category = newCategory;
-    this.getProducts();
   }
 
   onAddToCart(product: Product): void {
