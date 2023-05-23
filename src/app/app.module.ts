@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HomeWithoutUserComponent } from './pages/home-without-user/home-without-user.component';
 import { PagesheaderComponent } from './pages/pagescomp/pagesheader/pagesheader.component';
 import { FiltersComponent } from './pages/pagescomp/filters/filters.component';
 import { PagesproductComponent } from './pages/pagescomp/pagesproduct/pagesproduct.component';
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminComponent,
     ContactComponent,
     InformationComponent,
-    DatamanagementComponent
+    DatamanagementComponent,
+    HomeWithoutUserComponent
   ],
   imports: [
     BrowserModule,

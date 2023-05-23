@@ -7,11 +7,16 @@ import {AdminComponent} from './components/admin/admin.component';
 import {ContactComponent} from './footer/contact/contact.component';
 import {DatamanagementComponent} from './footer/datamanagement/datamanagement.component';
 import {InformationComponent} from './footer/information/information.component';
+import { HomeWithoutUserComponent } from './pages/home-without-user/home-without-user.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'home-without-user',
+    component: HomeWithoutUserComponent,
   },
   {
     path: 'cart',
@@ -38,7 +43,7 @@ const routes: Routes = [
     component: DatamanagementComponent,
   },
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'home-without-user', pathMatch: 'full'
   },
 ];
 
