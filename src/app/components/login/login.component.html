@@ -13,6 +13,9 @@
 					<input type="address" name="address" placeholder="Cím" [(ngModel)]="registrationElements.address">
 					<button (click)="onRegistration()" name="registrationButton">Új fiók létrehozása</button>
 				</form>
+				<div class="withoutLogin" mat-icon-button routerLink="/home-without-user">
+					<a class="justify-between">Folytatás bejelentkezés nélkül</a>
+				</div>
 			</div>
 
 			<div class="login">
