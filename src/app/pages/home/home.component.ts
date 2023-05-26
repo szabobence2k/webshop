@@ -14,8 +14,10 @@ const ROW_HEIGHT: { [id: number]: number } = { 1:400, 3:335 };
 export class HomeComponent implements OnInit, OnDestroy {
   cols = 3;
   rowHeight = ROW_HEIGHT[this.cols];
-  category: string | undefined;
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  categories: string[] = [];
+  selectedCategory: string | undefined;
   sort = 'desc';
   count = '10';
   productsSubscription: Subscription | undefined;
@@ -27,13 +29,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void {
-    this.webshopService.getAllProducts(this.count, this.sort, this.category)
-      .subscribe(products => this.products = products);
+    this.webshopService.getAllProducts(this.count, this.sort).subscribe((data) => {
+      this.products = data;
+      this.filteredProducts = data;
+      this.categories = Array.from(new Set(data.map(product => product.category)));
+    });
+  }
+
+  filterProducts(): void {
+    if (this.selectedCategory === undefined) {
+      this.filteredProducts = this.products;
+    } else {
+      this.webshopService.getProductsByCategory(this.selectedCategory).subscribe(products => {
+        this.filteredProducts = products;
+      });
+    }
   }
 
   onCategorySelected(newCategory: string): void {
-    this.category = newCategory;
+    this.selectedCategory = newCategory;
     this.getProducts();
+    console.log(this.selectedCategory);
+    console.log(this.categories[0]);
+    console.log(this.filteredProducts[0].name);
   }
 
   onColumnsCountChange(columnsNum: number): void {

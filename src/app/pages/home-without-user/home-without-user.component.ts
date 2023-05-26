@@ -44,7 +44,7 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void {
-    this.webshopService.getAllProducts(this.count, this.sort, this.category)
+    this.webshopService.getAllProducts(this.count, this.sort)
       .subscribe(products => this.products = products);
   }
 

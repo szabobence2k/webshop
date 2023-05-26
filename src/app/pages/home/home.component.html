@@ -1,22 +1,33 @@
 <mat-sidenav-container class="drawer-container">
   <mat-sidenav #sidenav mode="side" opened class="p-6">
-    <app-filters (categorySelected)="onCategorySelected($event)"></app-filters>
+    <!--app-filters (categorySelected)="onCategorySelected($event)"></app-filters-->
+    
+    <mat-accordion>
+      <mat-expansion-panel *ngIf="categories">
+        <mat-expansion-panel-header>
+          <label for="category">Kategóriák</label>
+        </mat-expansion-panel-header>
+        <div>
+          <mat-selection-list [multiple]="false" color="primary"  [(ngModel)]="selectedCategory" (ngModelChange)="filterProducts()">
+            <mat-list-option [value]="">Összes</mat-list-option>
+            <mat-list-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-list-option>
+          </mat-selection-list>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-sidenav>
 
-
   <mat-sidenav-content class="p-6 drawer-content">
-    <app-pagesheader
-      (columnsCountChange)="onColumnsCountChange($event)"
+    <app-pagesheader 
+      (columnsCountChange)="onColumnsCountChange($event)" 
       (itemsCountChange)="onItemsCountChange($event)"
       (sortChange)="onSortChange($event)">
     </app-pagesheader>
 
     <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
-      <mat-grid-tile *ngFor="let product of products">
-        <app-pagesproduct
-          [product]="product"
-          [fullWidthMode]="cols === 1"
-          (addToCart)="onAddToCart($event)" class="w-full">
+      <mat-grid-tile *ngFor="let product of filteredProducts">
+        <app-pagesproduct [product]="product" [fullWidthMode]="cols === 1" (addToCart)="onAddToCart($event)"
+          class="w-full">
         </app-pagesproduct>
       </mat-grid-tile>
     </mat-grid-list>
