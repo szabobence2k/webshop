@@ -14,28 +14,13 @@ const ROW_HEIGHT: { [id: number]: number } = { 1:400, 3:335 };
 export class HomeWithoutUserComponent implements OnInit, OnDestroy {
   cols = 3;
   rowHeight = ROW_HEIGHT[this.cols];
-  category: string | undefined;
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  categories: string[] = [];
+  selectedCategory: string | undefined;
   sort = 'desc';
   count = '10';
   productsSubscription: Subscription | undefined;
-
-  
-  private _cart: Cart = {items: [] };
-  itemsQuantity = 0;
-
-  @Input()
-  get cart(): Cart {
-    return this._cart;
-  }
-
-  set cart(cart: Cart) {
-    this._cart = cart;
-
-    this.itemsQuantity = cart.items
-      .map((item) => item.quantity)
-      .reduce((previous, current) => previous + current, 0);
-  }
 
   constructor(private cartService: CartService, private webshopService: WebshopService) { }
 
@@ -44,13 +29,29 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void {
-    this.webshopService.getAllProducts(this.count, this.sort)
-      .subscribe(products => this.products = products);
+    this.webshopService.getAllProducts(this.count, this.sort).subscribe((data) => {
+      this.products = data;
+      this.filteredProducts = data;
+      this.categories = Array.from(new Set(data.map(product => product.category)));
+    });
+  }
+
+  filterProducts(): void {
+    if (this.selectedCategory === undefined) {
+      this.filteredProducts = this.products;
+    } else {
+      this.webshopService.getProductsByCategory(this.selectedCategory).subscribe(products => {
+        this.filteredProducts = products;
+      });
+    }
   }
 
   onCategorySelected(newCategory: string): void {
-    this.category = newCategory;
+    this.selectedCategory = newCategory;
     this.getProducts();
+    console.log(this.selectedCategory);
+    console.log(this.categories[0]);
+    console.log(this.filteredProducts[0].name);
   }
 
   onColumnsCountChange(columnsNum: number): void {
@@ -84,11 +85,4 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTotal(items: Array<CartItem>): number {
-    return this.cartService.getTotal(items);
-  }
-
-  OnClearCart(): void {
-    this.cartService.clearCart();
-  }
 }

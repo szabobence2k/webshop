@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
@@ -26,7 +27,7 @@ export class HeaderComponent {
       .reduce((previous, current) => previous + current, 0);
   }
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, public router: Router) { }
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
