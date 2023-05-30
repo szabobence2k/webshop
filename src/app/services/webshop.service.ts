@@ -12,8 +12,9 @@ export class WebshopService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProducts(show = '10', sort = 'desc'): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(STORE_URL);
+  getAllProducts(show = 10, sort = 'desc'): Observable<Product[]> {
+    const url = `${STORE_URL}?show=${show}&sort=${sort}`;
+    return this.httpClient.get<Product[]>(url);
   }
 
   getProductsByCategory(category: string): Observable<Product[]> {

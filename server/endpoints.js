@@ -53,6 +53,13 @@ app.get('/api/products', (req, res) => {
     sql += ` WHERE category = '${category}'`;
   }
 
+  
+  if (req.query.sort === 'asc') {
+    sql += ' ORDER BY price ASC';
+  } else if (req.query.sort === 'desc') {
+    sql += ' ORDER BY price DESC';
+  }
+
   db.all(sql, [], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });

@@ -1,15 +1,14 @@
 <mat-sidenav-container class="drawer-container">
   <mat-sidenav #sidenav mode="side" opened class="p-6">
-    <app-filters (categorySelected)="onCategorySelected($event)"></app-filters>
-
+    <!--app-filters (categorySelected)="onCategorySelected($event)"></app-filters-->
+    
     <mat-accordion>
       <mat-expansion-panel *ngIf="categories">
         <mat-expansion-panel-header>
           <label for="category">Kategóriák</label>
         </mat-expansion-panel-header>
         <div>
-          <mat-selection-list [multiple]="false" color="primary" [(ngModel)]="selectedCategory"
-            (ngModelChange)="filterProducts()">
+          <mat-selection-list [multiple]="false" color="primary"  [(ngModel)]="selectedCategory" (ngModelChange)="filterProducts()">
             <mat-list-option [value]="">Összes</mat-list-option>
             <mat-list-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-list-option>
           </mat-selection-list>
@@ -19,7 +18,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="p-6 drawer-content">
-    <app-pagesheader (columnsCountChange)="onColumnsCountChange($event)" (itemsCountChange)="onItemsCountChange($event)"
+    <app-pagesheader 
+      (columnsCountChange)="onColumnsCountChange($event)" 
+      (itemsCountChange)="onItemsCountChange($event)"
       (sortChange)="onSortChange($event)">
     </app-pagesheader>
 
@@ -29,7 +30,7 @@
           class="w-full">
         </app-pagesproduct>
       </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list>    
 
     <mat-card-footer class="text-center text-lg-start bg-light text-muted">
       <div class="container text-center text-md-start mt-1">

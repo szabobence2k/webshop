@@ -19,7 +19,7 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
   categories: string[] = [];
   selectedCategory: string | undefined;
   sort = 'desc';
-  count = '10';
+  count = 10;
   productsSubscription: Subscription | undefined;
 
   constructor(private cartService: CartService, private webshopService: WebshopService) { }
@@ -33,6 +33,8 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
       this.products = data;
       this.filteredProducts = data;
       this.categories = Array.from(new Set(data.map(product => product.category)));
+      this.sortProducts();
+      this.filterProducts();
     });
   }
 
@@ -44,6 +46,16 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
         this.filteredProducts = products;
       });
     }
+  }
+
+  sortProducts(): void {
+    this.filteredProducts.sort((a, b) => {
+      if (this.sort === 'asc') {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
   }
 
   onCategorySelected(newCategory: string): void {
@@ -70,13 +82,14 @@ export class HomeWithoutUserComponent implements OnInit, OnDestroy {
   }
 
   onItemsCountChange(newCount: number): void {
-    this.count = newCount.toString();
+    this.count = newCount;
     this.getProducts();
   }
 
   onSortChange(newSort: string): void {
     this.sort = newSort;
-    this.getProducts();
+    this.sortProducts();
+    this.filterProducts();
   }
 
   ngOnDestroy(): void {
