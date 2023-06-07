@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
   iamAdmin = true;
   products: Product[] = [];
   name: string = '';
-  price: number = 0;
+  price!: number;
   category: string = '';
   description: string = '';
   image: string = '';

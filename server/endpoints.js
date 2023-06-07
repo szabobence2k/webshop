@@ -46,7 +46,7 @@ createProductsTable();
 
 //products
 app.get('/api/products', (req, res) => {
-  const  sql = 'SELECT * FROM ProductsDB';
+  let  sql = 'SELECT * FROM ProductsDB';
 
   if (req.query.category) {
     let category = req.query.category;
