@@ -11,7 +11,7 @@ export class PagesheaderComponent {
   @Output() sortChange = new EventEmitter<string>();
 
   sort = 'desc';
-  itemsShow = 10;
+  itemsShow!: number;
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;

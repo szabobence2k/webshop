@@ -22,11 +22,11 @@
                     <mat-icon>expand_more</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
+                    <button (click)="onItemsUpdated(5)" mat-menu-item>
+                        5
+                    </button>
                     <button (click)="onItemsUpdated(10)" mat-menu-item>
                         10
-                    </button>
-                    <button (click)="onItemsUpdated(25)" mat-menu-item>
-                        25
                     </button>
                     <button (click)="onItemsUpdated(100)" mat-menu-item>
                         100

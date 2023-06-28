@@ -4,19 +4,22 @@
     <a *ngIf="router.url === '/home-without-user'">Regisztrálás/Bejelentkezés</a>
   </button>
   <a routerLink="home">Bence Autósboltja</a>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+  <button mat-icon-button *ngIf="router.url === '/admin'">
+    <mat-icon  routerLink="login">shopping_cart</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="router.url !== '/admin'">
     <mat-icon [matBadge]="itemsQuantity" [matBadgeHidden]="!itemsQuantity" matBadgeColor="warn">shopping_cart</mat-icon>
   </button>
 
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
-      <div class="pb-3 flex justify-between">
+      <div class="pb-3 flex justify-between menu-item">
         <span class="m-auto mr-16">{{ itemsQuantity }} termék(ek)</span>
         <a mat-raised-button color="primary" routerLink="cart">Kosár</a>
       </div>
 
       <div *ngIf="cart.items.length" class="py-5">
-        <div *ngFor="let item of cart.items" class="flex justify-between front-light mb-2">
+        <div *ngFor="let item of cart.items" class="flex justify-between front-light mb-2 menu-item">
           {{ item.name }} x {{ item.quantity }}
           <span class="font-bold"> {{ item.price + ' FT' }} </span>
         </div>

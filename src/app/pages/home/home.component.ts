@@ -41,14 +41,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   filterProducts(): void {
     if (this.selectedCategory === undefined) {
-      this.filteredProducts = this.products;
+      this.filteredProducts = this.products.filter(product => this.matchesCount(product));
     } else {
       this.webshopService.getProductsByCategory(this.selectedCategory).subscribe(products => {
-        this.filteredProducts = products;
+        this.filteredProducts = products.filter(product => this.matchesCount(product));
+        this.sortProducts();
       });
+      return; 
     }
+    this.sortProducts();
   }
-
+  
   sortProducts(): void {
     this.filteredProducts.sort((a, b) => {
       if (this.sort === 'asc') {
@@ -57,6 +60,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         return b.price - a.price;
       }
     });
+  }
+  
+  matchesCount(product: Product): boolean {
+    const index = this.filteredProducts.findIndex(p => p.id === product.id);
+    return index < this.count;
   }
 
   onCategorySelected(newCategory: string): void {
@@ -84,7 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onItemsCountChange(newCount: number): void {
     this.count = newCount;
-    this.getProducts();
+    this.filterProducts();
   }
 
   onSortChange(newSort: string): void {
